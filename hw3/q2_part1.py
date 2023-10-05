@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# part A
 noise_variance = 0.5
 k = 10
 n = 1000
@@ -20,6 +21,7 @@ mses_test = []
 variances = []
 squared_biases = []
 
+# part B
 for j in range(1, 10):
     order = j
 
@@ -65,7 +67,12 @@ for j in range(1, 10):
     squared_biases.append(squared_bias)
     
 sum_var_bias = np.array(variances) + np.array(squared_biases)
+# variances = np.log(variances)
+# squared_biases = np.log(squared_biases)
+# mses_test = np.log(mses_test)
+# sum_var_bias = np.log(sum_var_bias)
 
+# Part C
 plt.plot(range(1, 10), variances, color='blue', linestyle='-', label='Variance')
 plt.plot(range(1, 10), squared_biases, color='red', linestyle='-', label='Bias^2')
 plt.plot(range(1, 10), mses_test, color='black', linestyle='-', label='MSE')

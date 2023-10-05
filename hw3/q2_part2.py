@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-noise_variance = 0.15
+# part A
+noise_variance = 0.5
 k = 10
 n = 1000
 u = np.random.normal(0, np.sqrt(noise_variance), size=n)
@@ -16,7 +17,8 @@ def design_matrix(x, order):
         design_matrix[:, i] = column
     return design_matrix
 
-lambdas = np.linspace(0.05, 8, 20)
+lambdas = np.linspace(0.05, 8, 100)
+lambdas = [0, 0.05, 0.5, 1, 2.5, 3, 4.5]
 mses_test = []
 variances = []
 squared_biases = []
@@ -67,10 +69,15 @@ for lmd in lambdas:
     
 sum_var_bias = np.array(variances) + np.array(squared_biases)
 log_lambdas = np.log(lambdas)
+log_lambdas = lambdas
+# variances = np.log(variances)
+# squared_biases = np.log(squared_biases)
+# mses_test = np.log(mses_test)
+# sum_var_bias = np.log(sum_var_bias)
 plt.plot(log_lambdas, variances, color='blue', linestyle='-', label='Variance')
-plt.plot(log_lambdas, squared_biases, color='red', linestyle='-', label='Bias^2')
-plt.plot(log_lambdas, mses_test, color='black', linestyle='-', label='MSE')
-plt.plot(log_lambdas, sum_var_bias, color='green', linestyle='-', label='Variance + Bias^2')
+# plt.plot(log_lambdas, squared_biases, color='red', linestyle='-', label='Bias^2')
+# plt.plot(log_lambdas, mses_test, color='black', linestyle='-', label='MSE')
+# plt.plot(log_lambdas, sum_var_bias, color='green', linestyle='-', label='Variance + Bias^2')
 
 
 plt.xlabel('Log Lambda')
